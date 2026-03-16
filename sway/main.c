@@ -185,6 +185,15 @@ static void log_kernel(void) {
 
 
 static bool drop_permissions(void) {
+	const char *allow_root = getenv("SWAY_ALLOW_ROOT");
+	bool sway_allow_root = allow_root && strcmp(allow_root, "1") == 0;
+
+	if (sway_allow_root) {
+		sway_log(SWAY_INFO,
+			"Running with root privileges because SWAY_ALLOW_ROOT=1");
+		return true;
+	}
+
 	if (getuid() != geteuid() || getgid() != getegid()) {
 		// Set the gid and uid in the correct order.
 		if (setgid(getgid()) != 0) {

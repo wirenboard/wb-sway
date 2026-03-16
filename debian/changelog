@@ -1,4 +1,4 @@
-sway (1.5-7wb1) unstable; urgency=medium
+sway (1.5+wb1) stable; urgency=medium
 
   * Add downstream opt-in root mode controlled by SWAY_ALLOW_ROOT.
   * Add wb-sway-kiosk package with Wiren Board root-run kiosk runtime.
