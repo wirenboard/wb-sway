@@ -6,7 +6,7 @@ export DH_OPTIONS=-v
 
 include /usr/share/dpkg/pkg-info.mk
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-export DEB_CFLAGS_MAINT_APPEND = -Wno-error=deprecated-declarations
+export DEB_CFLAGS_MAINT_APPEND = -Wno-error=deprecated-declarations -Wno-error=date-time
 
 %:
 	dh $@
