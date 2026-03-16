@@ -1,0 +1,230 @@
+outlines:
+  default:
+    width: 35.657
+    height: 52
+  change-view:
+    width: 53.485
+    height: 52
+  change-view-2:
+    width: 62.399
+    height: 52
+  large:
+    width: 44.571
+    height: 52
+  spaceline:
+    width: 142.63
+    height: 52
+  special:
+    width: 44.571
+    height: 52
+  special-2:
+    width: 53.485
+    height: 52
+  special-3:
+    width: 62.399
+    height: 52
+  esc-top:
+    width: 35.657
+    height: 52
+  placeholder:
+    width: 20
+    height: 1
+  placeholder-top:
+    width: 450.055
+    height: 52
+  ru_default:
+    width: 32.415
+    height: 52
+  ru_change-view:
+    width: 32.415
+    height: 52
+  ru_change-view-2:
+    width: 64.83
+    height: 52
+  ru_fill:
+    width: 64.83
+    height: 52
+  ru_large:
+    width: 35.656
+    height: 52
+  ru_spaceline:
+    width: 90.763
+    height: 52
+  ru_spaceline-fill:
+    width: 155.593
+    height: 52
+  ru_special:
+    width: 32.415
+    height: 52
+  ru_special-2:
+    width: 35.656
+    height: 52
+  ru_special-3:
+    width: 64.83
+    height: 52
+  ru_esc-top:
+    width: 32.415
+    height: 52
+  ru_placeholder:
+    width: 20
+    height: 1
+  ru_placeholder-top:
+    width: 428.98
+    height: 52
+views:
+  base:
+  - hide_osk gap q w e r t y u i o p gap BackSpace
+  - a s d f g h j k l
+  - show_upper z x c v b n m gap
+  - show_numbers show_ru space . Return
+  upper:
+  - hide_osk gap Q W E R T Y U I O P gap BackSpace
+  - A S D F G H J K L
+  - show_upper Z X C V B N M gap
+  - show_numbers show_ru space . Return
+  numbers:
+  - hide_osk gap 1 2 3 4 5 6 7 8 9 0 gap BackSpace
+  - '@ # $ % & - _ + ( )'
+  - 'show_symbols , " '' : ; ! ? gap'
+  - show_letters show_ru space . Return
+  symbols:
+  - hide_osk gap ~ ` | · √ π τ ÷ × ¶ gap BackSpace
+  - © ® £ € ¥ ^ ° * { }
+  - show_numbers_from_symbols \ / < > = [ ] gap
+  - show_letters show_ru space . Return
+  ru_base:
+  - ru_hide_osk ru_gap й ц у к е н г ш щ з х ru_gap ru_BackSpace
+  - ф ы в а п р о л д ж э
+  - ru_show_upper я ч с м и т ь б ю ru_gap
+  - ru_show_numbers ru_preferences ё ru_space ъ ru_. ru_Return
+  ru_upper:
+  - ru_hide_osk ru_gap Й Ц У К Е Н Г Ш Щ З Х ru_gap ru_BackSpace
+  - Ф Ы В А П Р О Л Д Ж Э
+  - ru_show_upper Я Ч С М И Т Ь Б Ю ru_gap
+  - ru_show_numbers ru_preferences Ё ru_space Ъ ru_,-large ru_Return
+  ru_numbers:
+  - ru_hide_osk ru_gap 1 2 3 4 5 6 7 8 9 0 ² ru_gap ru_BackSpace-wide
+  - '@ # $ % & - _ + ( ) ³'
+  - 'ru_show_symbols , " '' : ; ! ? ru_gap'
+  - ru_show_letters ru_preferences ru_space-fill ru_. ru_Return
+  ru_symbols:
+  - ru_hide_osk ru_gap ~ ` | · √ π τ ÷ × ¶ ² ru_gap ru_BackSpace-wide
+  - © ® £ € ¥ ^ ° * { } ³
+  - ru_show_numbers \ / < > = [ ] ru_gap
+  - ru_show_letters ru_preferences ru_space-fill ru_. ru_Return
+buttons:
+  show_upper:
+    action:
+      locking:
+        lock_view: upper
+        unlock_view: base
+    outline: change-view
+    icon: key-shift
+  BackSpace:
+    outline: special-2
+    icon: edit-clear-symbolic
+    action: erase
+  hide_osk:
+    outline: esc-top
+    label: '[X]'
+    keysym: F13
+  --:
+    outline: placeholder-top
+    text: ''
+  gap:
+    outline: placeholder
+    text: ''
+  show_numbers:
+    action:
+      set_view: numbers
+    outline: change-view-2
+    label: '123'
+  show_numbers_from_symbols:
+    action:
+      set_view: numbers
+    outline: change-view
+    label: '123'
+  show_letters:
+    action:
+      set_view: base
+    outline: change-view-2
+    label: ABC
+  show_symbols:
+    action:
+      set_view: symbols
+    outline: change-view
+    label: '*/='
+  .:
+    outline: large
+  space:
+    outline: spaceline
+    text: ' '
+  Return:
+    outline: special-3
+    icon: key-enter
+    keysym: Return
+  show_ru:
+    outline: special
+    label: RU
+    action:
+      set_view: ru_base
+  ru_show_upper:
+    action:
+      locking:
+        lock_view: ru_upper
+        unlock_view: ru_base
+    outline: ru_change-view
+    icon: key-shift
+  ru_BackSpace:
+    outline: ru_special
+    icon: edit-clear-symbolic
+    action: erase
+  ru_BackSpace-wide:
+    outline: ru_special-3
+    icon: edit-clear-symbolic
+    action: erase
+  ru_preferences:
+    outline: ru_special-2
+    label: EN
+    action:
+      set_view: base
+  ru_hide_osk:
+    outline: ru_esc-top
+    label: '[X]'
+    keysym: F13
+  ru_--:
+    outline: ru_placeholder-top
+    text: ''
+  ru_gap:
+    outline: ru_placeholder
+    text: ''
+  ru_show_numbers:
+    action:
+      set_view: ru_numbers
+    outline: ru_change-view-2
+    label: '123'
+  ru_show_letters:
+    action:
+      set_view: ru_base
+    outline: ru_change-view-2
+    label: АБВ
+  ru_show_symbols:
+    action:
+      set_view: ru_symbols
+    outline: ru_change-view-2
+    label: '*/='
+  ru_space:
+    outline: ru_spaceline
+    text: ' '
+  ru_space-fill:
+    outline: ru_spaceline-fill
+    text: ' '
+  ru_Return:
+    outline: ru_special-3
+    icon: key-enter
+    keysym: Return
+  ru_.:
+    outline: ru_large
+  ru_,-large:
+    outline: ru_large
+    text: ','

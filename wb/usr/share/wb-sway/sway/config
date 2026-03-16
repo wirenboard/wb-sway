@@ -1,0 +1,29 @@
+# Kiosk mode: Firefox + Squeekboard
+set $mod Mod4
+
+bar {
+    mode invisible
+}
+
+default_border none
+focus_follows_mouse no
+mouse_warping none
+
+input "type:keyboard" {
+    xkb_layout "us,ru"
+    xkb_options "grp:alt_shift_toggle"
+}
+
+bindsym $mod+Shift+e nop
+bindsym $mod+Shift+c nop
+bindsym $mod+Shift+r nop
+
+for_window [app_id="firefox-esr"] border none
+for_window [class="^Firefox$"] border none
+for_window [app_id="crashreporter"] kill
+
+exec /usr/lib/wb-sway/wb-start-squeekboard.sh
+exec /usr/lib/wb-sway/squeekboard-autovis.sh
+exec /usr/lib/wb-sway/wb-kiosk-firefox.sh
+
+exec_always /usr/lib/wb-sway/wb-sway-kiosk-apply.sh
