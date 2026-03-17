@@ -35,6 +35,7 @@ StandardError=journal
 ExecStartPre=/bin/mkdir -p /run/user/0
 ExecStartPre=/bin/chmod 700 /run/user/0
 ExecStartPre=/usr/lib/wb-sway/wb-kiosk-prepare-config.sh
+ExecStartPre=/usr/lib/wb-sway/wb-hdmi-audio-setup.sh
 ExecStartPre=/bin/sh -c 'pkill -x firefox-esr || true'
 ExecStartPre=/bin/sh -c 'pkill -x squeekboard || true'
 ExecStart=/usr/bin/dbus-run-session /usr/bin/sway -c /usr/share/wb-sway/sway/config
