@@ -33,5 +33,5 @@ override_dh_fixperms:
 		debian/wb-sway-kiosk/usr/lib/wb-sway/wb-hdmi-audio-setup.sh \
 		debian/wb-sway-kiosk/usr/lib/wb-sway/wb-kiosk-prepare-config.sh \
 		debian/wb-sway-kiosk/usr/lib/wb-sway/wb-start-squeekboard.sh; do \
-		[ -e "$$file" ] && chmod 0755 "$$file"; \
+		if [ -e "$$file" ]; then chmod 0755 "$$file"; fi; \
 	done
