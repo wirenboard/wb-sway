@@ -1,7 +1,7 @@
 [Unit]
 Description=Sway Kiosk (root, Firefox + Squeekboard)
 After=wb-hwconf-manager.service systemd-user-sessions.service dbus.service
-Conflicts=getty@tty1.service weston.service wb-kiosk.service xinit.service
+Conflicts=getty@tty1.service xinit.service
 ConditionPathExists=/usr/bin/sway
 ConditionPathExists=/usr/bin/firefox-esr
 ConditionPathExists=/usr/bin/squeekboard
