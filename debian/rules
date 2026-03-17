@@ -29,6 +29,9 @@ override_dh_install:
 .PHONY: override_dh_fixperms
 override_dh_fixperms:
 	dh_fixperms
-	chmod 0755 debian/wb-sway-kiosk/usr/lib/wb-sway/wb-hdmi-audio-setup.sh
-	chmod 0755 debian/wb-sway-kiosk/usr/lib/wb-sway/wb-kiosk-prepare-config.sh
-	chmod 0755 debian/wb-sway-kiosk/usr/lib/wb-sway/wb-start-squeekboard.sh
+	for file in \
+		debian/wb-sway-kiosk/usr/lib/wb-sway/wb-hdmi-audio-setup.sh \
+		debian/wb-sway-kiosk/usr/lib/wb-sway/wb-kiosk-prepare-config.sh \
+		debian/wb-sway-kiosk/usr/lib/wb-sway/wb-start-squeekboard.sh; do \
+		[ -e "$$file" ] && chmod 0755 "$$file"; \
+	done
