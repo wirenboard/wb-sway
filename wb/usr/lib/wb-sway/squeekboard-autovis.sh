@@ -1,6 +1,14 @@
 #!/bin/sh
 set -eu
 
+LOCK_DIR=/run/wb-kiosk/squeekboard-autovis.lock
+
+mkdir -p /run/wb-kiosk
+if ! mkdir "$LOCK_DIR" 2>/dev/null; then
+	exit 0
+fi
+trap 'rmdir "$LOCK_DIR"' EXIT INT TERM
+
 LOG_FILE=${XDG_RUNTIME_DIR:-/tmp}/squeekboard.log
 HIDE_KEYSYM=F13
 HIDE_KEYCODE=
