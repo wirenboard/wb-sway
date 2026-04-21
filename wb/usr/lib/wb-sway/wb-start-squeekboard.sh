@@ -1,9 +1,14 @@
 #!/bin/sh
 set -eu
 
-LOCK_DIR=/run/wb-kiosk/wb-start-squeekboard.lock
+# This helper keeps Squeekboard running in the kiosk session.
+# It selects the WB keyboard layouts, writes Squeekboard's Wayland debug log,
+# and restarts Squeekboard if it exits. The autovis watcher reads that log to
+# show and hide the keyboard. A lock directory prevents duplicate launcher loops.
 
-mkdir -p /run/wb-kiosk
+LOCK_DIR=/run/wb-sway-kiosk/wb-start-squeekboard.lock
+
+mkdir -p /run/wb-sway-kiosk
 if ! mkdir "$LOCK_DIR" 2>/dev/null; then
 	exit 0
 fi

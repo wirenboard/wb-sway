@@ -1,3 +1,7 @@
+# WB kiosk Squeekboard layout.
+# The hide_osk key emits F13; squeekboard-autovis.sh watches that private key
+# and hides the on-screen keyboard through DBus.
+
 outlines:
   default:
     width: 35.657

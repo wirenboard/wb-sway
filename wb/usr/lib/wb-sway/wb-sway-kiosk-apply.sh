@@ -1,6 +1,11 @@
 #!/bin/sh
 set -eu
 
+# This helper applies display and input settings to the running Sway session.
+# It reads /etc/wb-hardware.conf, waits briefly for an active output, and then
+# updates cursor visibility, output rotation, output mode, and keyboard layout.
+# It is safe to run after startup and after Sway config reloads.
+
 CONFIG_PATH=/etc/wb-hardware.conf
 
 get_option() {

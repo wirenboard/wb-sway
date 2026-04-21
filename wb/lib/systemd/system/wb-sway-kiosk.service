@@ -1,5 +1,10 @@
 [Unit]
-Description=Sway Kiosk (root, Firefox + Squeekboard)
+# This service owns the WB kiosk session on tty1.
+# It prepares root's Wayland runtime dir, snapshots kiosk config, sets HDMI
+# audio, kills leftover helpers from previous starts, and runs Sway in a DBus
+# session. Firefox and Squeekboard are started by the Sway config.
+
+Description=WB Sway Kiosk
 After=wb-hwconf-manager.service systemd-user-sessions.service dbus.service
 Conflicts=getty@tty1.service xinit.service
 ConditionPathExists=/usr/bin/sway

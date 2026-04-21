@@ -27,6 +27,8 @@ override_dh_install:
 	fi
 
 .PHONY: override_dh_fixperms
+# These helpers are installed under /usr/lib, but systemd and Sway execute
+# them directly. Keep the package copies executable after dh_fixperms.
 override_dh_fixperms:
 	dh_fixperms
 	for file in \

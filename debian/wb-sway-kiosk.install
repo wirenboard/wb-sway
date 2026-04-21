@@ -1,4 +1,4 @@
-wb/lib/systemd/system/sway-kiosk.service /lib/systemd/system/
+wb/lib/systemd/system/wb-sway-kiosk.service /lib/systemd/system/
 wb/usr/lib/wb-sway/* /usr/lib/wb-sway/
 wb/usr/share/wb-sway/sway/config /usr/share/wb-sway/sway/
 wb/usr/share/wb-sway/squeekboard/keyboards/*.yaml /usr/share/wb-sway/squeekboard/keyboards/

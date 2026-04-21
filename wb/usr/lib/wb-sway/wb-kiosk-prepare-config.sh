@@ -1,7 +1,11 @@
 #!/bin/sh
 set -eu
 
-RUNTIME_CONFIG_DIR=/run/wb-kiosk
+# This script prepares a small runtime config cache for kiosk helpers.
+# It reads /etc/wb-hardware.conf once before Sway starts and stores normalized
+# values in /run/wb-sway-kiosk. Firefox and audio setup read those files later.
+
+RUNTIME_CONFIG_DIR=/run/wb-sway-kiosk
 
 mkdir -p "$RUNTIME_CONFIG_DIR"
 chmod 0755 "$RUNTIME_CONFIG_DIR"

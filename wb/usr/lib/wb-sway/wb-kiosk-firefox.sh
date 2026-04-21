@@ -1,7 +1,13 @@
 #!/bin/sh
 set -eu
 
-RUNTIME_CONFIG_DIR=/run/wb-kiosk
+# This helper starts Firefox for the kiosk session.
+# It uses a dedicated Wiren Board profile, applies kiosk or window layout,
+# disables crash and session prompts, and removes stale profile state.
+# The URL and Firefox mode come from /run/wb-sway-kiosk, with
+# /etc/wb-hardware.conf as a fallback.
+
+RUNTIME_CONFIG_DIR=/run/wb-sway-kiosk
 
 read_runtime_value() {
 	name=$1

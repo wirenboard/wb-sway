@@ -1,7 +1,12 @@
 #!/bin/sh
 set -eu
 
-RUNTIME_CONFIG_DIR=/run/wb-kiosk
+# This helper applies the kiosk HDMI volume before Firefox starts.
+# The value comes from /run/wb-sway-kiosk, with /etc/wb-hardware.conf as a
+# fallback. If the ALSA softvol control is missing, short silent playback
+# creates it before the volume is set.
+
+RUNTIME_CONFIG_DIR=/run/wb-sway-kiosk
 CONFIG_PATH=/etc/wb-hardware.conf
 
 read_runtime_value() {

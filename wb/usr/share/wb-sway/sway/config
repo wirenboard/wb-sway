@@ -1,4 +1,8 @@
-# Kiosk mode: Firefox + Squeekboard
+# WB kiosk Sway config.
+# The exec order matters: start Squeekboard first, then the visibility watcher,
+# then Firefox. exec_always reapplies output and input settings after startup
+# and after Sway config reloads.
+
 set $mod Mod4
 
 bar {

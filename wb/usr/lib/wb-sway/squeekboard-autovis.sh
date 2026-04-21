@@ -1,9 +1,16 @@
 #!/bin/sh
 set -eu
 
-LOCK_DIR=/run/wb-kiosk/squeekboard-autovis.lock
+# This helper controls when Squeekboard is shown in the kiosk session.
+# Squeekboard does not hide itself reliably after key presses, so the script
+# watches its Wayland debug log and calls the OSK DBus API directly.
+# It shows the keyboard when an input method is activated.
+# It hides the keyboard when the special hide key is pressed.
+# A lock directory prevents running more than one watcher at the same time.
 
-mkdir -p /run/wb-kiosk
+LOCK_DIR=/run/wb-sway-kiosk/squeekboard-autovis.lock
+
+mkdir -p /run/wb-sway-kiosk
 if ! mkdir "$LOCK_DIR" 2>/dev/null; then
 	exit 0
 fi
@@ -12,6 +19,8 @@ trap 'rmdir "$LOCK_DIR"' EXIT INT TERM
 LOG_FILE=${XDG_RUNTIME_DIR:-/tmp}/squeekboard.log
 HIDE_KEYSYM=F13
 HIDE_KEYCODE=
+
+# F13 is emitted by the WB keyboard layouts and is not meant for applications.
 
 show_osk() {
     gdbus call --session \

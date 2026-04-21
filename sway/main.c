@@ -185,6 +185,8 @@ static void log_kernel(void) {
 
 
 static bool drop_permissions(void) {
+	// Wiren Board kiosk runs Sway as root from a system service.
+	// Keep the usual Sway behavior unless that service explicitly opts in.
 	const char *allow_root = getenv("SWAY_ALLOW_ROOT");
 	bool sway_allow_root = allow_root && strcmp(allow_root, "1") == 0;
 
