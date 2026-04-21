@@ -7,6 +7,7 @@
 Description=WB Sway Kiosk
 After=wb-hwconf-manager.service systemd-user-sessions.service dbus.service
 Conflicts=getty@tty1.service xinit.service
+ConditionPathExists=/usr/bin/dbus-run-session
 ConditionPathExists=/usr/bin/sway
 ConditionPathExists=/usr/bin/firefox-esr
 ConditionPathExists=/usr/bin/squeekboard

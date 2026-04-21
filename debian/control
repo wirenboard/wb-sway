@@ -47,6 +47,7 @@ Architecture: all
 Multi-Arch: foreign
 Depends: ${misc:Depends},
          alsa-utils,
+         dbus-daemon | dbus,
          firefox-esr,
          jq,
          libglib2.0-bin,
