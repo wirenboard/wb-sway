@@ -12,7 +12,14 @@ mkdir -p /run/wb-sway-kiosk
 if ! mkdir "$LOCK_DIR" 2>/dev/null; then
 	exit 0
 fi
-trap 'rmdir "$LOCK_DIR"' EXIT INT TERM
+
+cleanup() {
+	pkill -TERM -P "$$" 2>/dev/null || true
+	rmdir "$LOCK_DIR" 2>/dev/null || true
+}
+
+trap cleanup EXIT
+trap 'cleanup; exit 0' INT TERM
 
 sleep 1
 
