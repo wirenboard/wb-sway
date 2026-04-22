@@ -1,0 +1,55 @@
+[Unit]
+# This service owns the WB kiosk session on tty1.
+# It prepares root's Wayland runtime dir, snapshots kiosk config, sets HDMI
+# audio, kills leftover helpers from previous starts, and runs Sway in a DBus
+# session. Firefox and Squeekboard are started by the Sway config.
+
+Description=WB Sway Kiosk
+After=wb-hwconf-manager.service systemd-user-sessions.service dbus.service
+Conflicts=getty@tty1.service xinit.service
+ConditionPathExists=/usr/bin/dbus-run-session
+ConditionPathExists=/usr/bin/sway
+ConditionPathExists=/usr/bin/firefox-esr
+ConditionPathExists=/usr/bin/squeekboard
+ConditionPathExists=/usr/share/wb-sway/sway/config
+ConditionPathExists=/usr/lib/wb-sway/wb-kiosk-firefox.sh
+
+[Service]
+Type=simple
+User=root
+Group=root
+SupplementaryGroups=video input render audio tty
+PAMName=login
+WorkingDirectory=/root
+Environment=HOME=/root
+Environment=XDG_RUNTIME_DIR=/run/user/0
+Environment=XDG_SESSION_TYPE=wayland
+Environment=XDG_CURRENT_DESKTOP=sway
+Environment=MOZ_ENABLE_WAYLAND=1
+Environment=GTK_IM_MODULE=wayland
+Environment=MOZ_CRASHREPORTER_DISABLE=1
+Environment=MOZ_DISABLE_SAFE_MODE_KEY=1
+Environment=WLR_NO_HARDWARE_CURSORS=1
+Environment=SWAY_ALLOW_ROOT=1
+TTYPath=/dev/tty1
+TTYReset=yes
+TTYVHangup=yes
+TTYVTDisallocate=yes
+StandardInput=tty
+StandardOutput=journal
+StandardError=journal
+ExecStartPre=/bin/mkdir -p /run/user/0
+ExecStartPre=/bin/chmod 700 /run/user/0
+ExecStartPre=/usr/lib/wb-sway/wb-kiosk-prepare-config.sh
+ExecStartPre=/usr/lib/wb-sway/wb-hdmi-audio-setup.sh
+ExecStartPre=/bin/sh -c 'pkill -f /usr/lib/wb-sway/[w]b-start-squeekboard.sh || true'
+ExecStartPre=/bin/sh -c 'pkill -f /usr/lib/wb-sway/[s]queekboard-autovis.sh || true'
+ExecStartPre=/bin/sh -c 'pkill -x firefox-esr || true'
+ExecStartPre=/bin/sh -c 'pkill -x squeekboard || true'
+ExecStartPre=/bin/rm -rf /run/wb-sway-kiosk/wb-start-squeekboard.lock /run/wb-sway-kiosk/squeekboard-autovis.lock
+ExecStart=/usr/bin/dbus-run-session /usr/bin/sway -c /usr/share/wb-sway/sway/config
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

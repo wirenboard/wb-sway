@@ -1,0 +1,223 @@
+# WB kiosk wide Squeekboard layout.
+# The hide_osk key emits F13; squeekboard-autovis.sh watches that private key
+# and hides the on-screen keyboard through DBus.
+
+outlines:
+  default:
+    width: 53.76
+    height: 42
+  change-view:
+    width: 80.64
+    height: 42
+  change-view-2:
+    width: 94.08
+    height: 42
+  large:
+    width: 53.76
+    height: 42
+  spaceline:
+    width: 241.92
+    height: 42
+  special:
+    width: 53.76
+    height: 42
+  special-2:
+    width: 80.64
+    height: 42
+  special-3:
+    width: 94.08
+    height: 42
+  esc-top:
+    width: 53.76
+    height: 42
+  placeholder:
+    width: 20
+    height: 1
+  placeholder-top:
+    width: 658.24
+    height: 42
+  ru_default:
+    width: 48.872
+    height: 42
+  ru_change-view:
+    width: 48.872
+    height: 42
+  ru_change-view-2:
+    width: 97.744
+    height: 42
+  ru_fill:
+    width: 97.744
+    height: 42
+  ru_spaceline:
+    width: 146.616
+    height: 42
+  ru_spaceline-fill:
+    width: 244.36
+    height: 42
+  ru_special:
+    width: 48.872
+    height: 42
+  ru_special-2:
+    width: 97.744
+    height: 42
+  ru_esc-top:
+    width: 48.872
+    height: 42
+  ru_placeholder:
+    width: 20
+    height: 1
+  ru_placeholder-top:
+    width: 626.464
+    height: 42
+views:
+  base:
+  - hide_osk gap q w e r t y u i o p gap BackSpace
+  - a s d f g h j k l
+  - show_upper z x c v b n m gap
+  - show_numbers show_ru space . Return
+  upper:
+  - hide_osk gap Q W E R T Y U I O P gap BackSpace
+  - A S D F G H J K L
+  - show_upper Z X C V B N M gap
+  - show_numbers show_ru space . Return
+  numbers:
+  - hide_osk gap 1 2 3 4 5 6 7 8 9 0 gap BackSpace
+  - '@ # $ % & - _ + ( )'
+  - 'show_symbols , " '' : ; ! ? gap'
+  - show_letters show_ru space . Return
+  symbols:
+  - hide_osk gap ~ ` | · √ π τ ÷ × ¶ gap BackSpace
+  - © ® £ € ¥ ^ ° * { }
+  - show_numbers_from_symbols \ / < > = [ ] gap
+  - show_letters show_ru space . Return
+  ru_base:
+  - ru_hide_osk ru_gap й ц у к е н г ш щ з х ru_gap ru_BackSpace
+  - ф ы в а п р о л д ж э
+  - ru_show_upper я ч с м и т ь б ю ru_gap
+  - ru_show_numbers ru_preferences ё ru_space ъ . ru_Return
+  ru_upper:
+  - ru_hide_osk ru_gap Й Ц У К Е Н Г Ш Щ З Х ru_gap ru_BackSpace
+  - Ф Ы В А П Р О Л Д Ж Э
+  - ru_show_upper Я Ч С М И Т Ь Б Ю ru_gap
+  - ru_show_numbers ru_preferences Ё ru_space Ъ , ru_Return
+  ru_numbers:
+  - ru_hide_osk ru_gap 1 2 3 4 5 6 7 8 9 0 ² ru_gap ru_BackSpace-wide
+  - '@ # $ % & - _ + ( ) ³'
+  - 'ru_show_symbols , " '' : ; ! ? ru_gap'
+  - ru_show_letters ru_preferences ru_space-fill . ru_Return
+  ru_symbols:
+  - ru_hide_osk ru_gap ~ ` | · √ π τ ÷ × ¶ ² ru_gap ru_BackSpace-wide
+  - © ® £ € ¥ ^ ° * { } ³
+  - ru_show_numbers \ / < > = [ ] ru_gap
+  - ru_show_letters ru_preferences ru_space-fill . ru_Return
+buttons:
+  show_upper:
+    action:
+      locking:
+        lock_view: upper
+        unlock_view: base
+    outline: change-view
+    icon: key-shift
+  BackSpace:
+    outline: special-2
+    icon: edit-clear-symbolic
+    action: erase
+  hide_osk:
+    outline: esc-top
+    label: '[X]'
+    keysym: F13
+  --:
+    outline: placeholder-top
+    text: ''
+  gap:
+    outline: placeholder
+    text: ''
+  show_numbers:
+    action:
+      set_view: numbers
+    outline: change-view-2
+    label: '123'
+  show_numbers_from_symbols:
+    action:
+      set_view: numbers
+    outline: change-view
+    label: '123'
+  show_letters:
+    action:
+      set_view: base
+    outline: change-view-2
+    label: ABC
+  show_symbols:
+    action:
+      set_view: symbols
+    outline: change-view
+    label: '*/='
+  .:
+    outline: large
+  space:
+    outline: spaceline
+    text: ' '
+  Return:
+    outline: special-3
+    icon: key-enter
+    keysym: Return
+  show_ru:
+    outline: special
+    label: RU
+    action:
+      set_view: ru_base
+  ru_show_upper:
+    action:
+      locking:
+        lock_view: ru_upper
+        unlock_view: ru_base
+    outline: ru_change-view
+    icon: key-shift
+  ru_BackSpace:
+    outline: ru_special
+    icon: edit-clear-symbolic
+    action: erase
+  ru_BackSpace-wide:
+    outline: ru_special-2
+    icon: edit-clear-symbolic
+    action: erase
+  ru_preferences:
+    outline: ru_special
+    label: EN
+    action:
+      set_view: base
+  ru_hide_osk:
+    outline: ru_esc-top
+    label: '[X]'
+    keysym: F13
+  ru_--:
+    outline: ru_placeholder-top
+    text: ''
+  ru_gap:
+    outline: ru_placeholder
+    text: ''
+  ru_show_numbers:
+    action:
+      set_view: ru_numbers
+    outline: ru_change-view-2
+    label: '123'
+  ru_show_letters:
+    action:
+      set_view: ru_base
+    outline: ru_change-view-2
+    label: АБВ
+  ru_show_symbols:
+    action:
+      set_view: ru_symbols
+    outline: ru_change-view-2
+    label: '*/='
+  ru_space:
+    outline: ru_spaceline
+    text: ' '
+  ru_space-fill:
+    outline: ru_spaceline-fill
+    text: ' '
+  ru_Return:
+    outline: ru_special-2
+    icon: key-enter
+    keysym: Return
