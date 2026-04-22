@@ -1,3 +1,9 @@
+wb-sway (1.5+wb101) stable; urgency=medium
+
+  * Fix the behavior of touchscreen rotation following image rotation.
+
+ -- Anton Tarasov <anton.tarasov@wirenboard.com>  Wed, 22 Apr 2026 13:26:25 +0300
+
 wb-sway (1.5+wb100) stable; urgency=medium
 
   * Rename the binary package to wb-sway to avoid clashing with Debian sway.
