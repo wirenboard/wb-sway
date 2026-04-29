@@ -3,7 +3,8 @@ set -eu
 
 # This helper applies display and input settings to the running Sway session.
 # It reads /etc/wb-hardware.conf, waits briefly for an active output, and then
-# updates cursor visibility, output rotation, output mode, and keyboard layout.
+# updates cursor visibility, output rotation, touch output mapping, output mode,
+# and keyboard layout.
 # It is safe to run after startup and after Sway config reloads.
 
 CONFIG_PATH=/etc/wb-hardware.conf
@@ -83,6 +84,7 @@ main() {
     [ -n "$output" ] || return 0
 
     swaymsg output "$output" transform "$(config_rotate_to_sway "$rotate")" >/dev/null 2>&1 || true
+    swaymsg input type:touch map_to_output "$output" >/dev/null 2>&1 || true
 
     sway_mode=$(config_mode_to_sway "$mode")
     if [ -n "$sway_mode" ]; then
