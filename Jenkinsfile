@@ -1,3 +1,4 @@
 buildDebSbuild defaultTargets: 'bullseye-arm64',
                defaultRunLintian: true,
-               customReleaseBranchPattern: '^dev/(.*)'
+               customReleaseBranchPattern: '^dev/(.*)',
+               customMainBranch: '^dev/(.*)'
