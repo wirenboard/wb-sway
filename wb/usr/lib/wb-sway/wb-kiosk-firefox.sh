@@ -1,13 +1,28 @@
 #!/bin/sh
 set -eu
 
-# This helper starts Firefox for the kiosk session.
+# This helper keeps Firefox running in the kiosk session.
 # It uses a dedicated Wiren Board profile, applies kiosk or window layout,
-# disables crash and session prompts, and removes stale profile state.
+# disables crash and session prompts, and removes stale profile state before
+# each start. A lock directory prevents duplicate launcher loops.
 # The URL and Firefox mode come from /run/wb-sway-kiosk, with
 # /etc/wb-hardware.conf as a fallback.
 
 RUNTIME_CONFIG_DIR=/run/wb-sway-kiosk
+LOCK_DIR=/run/wb-sway-kiosk/wb-kiosk-firefox.lock
+
+mkdir -p /run/wb-sway-kiosk
+if ! mkdir "$LOCK_DIR" 2>/dev/null; then
+	exit 0
+fi
+
+cleanup() {
+	pkill -TERM -P "$$" 2>/dev/null || true
+	rmdir "$LOCK_DIR" 2>/dev/null || true
+}
+
+trap cleanup EXIT
+trap 'cleanup; exit 0' INT TERM
 
 read_runtime_value() {
 	name=$1
@@ -133,7 +148,10 @@ cleanup_profile_state() {
 
 ensure_profile
 ensure_pref 'user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);'
-apply_browser_layout
-cleanup_profile_state
 
-exec firefox-esr --no-remote --profile "$PROFILE_DIR" "$url"
+while true; do
+	apply_browser_layout
+	cleanup_profile_state
+	firefox-esr --no-remote --profile "$PROFILE_DIR" "$url" || true
+	sleep 1
+done

@@ -1,3 +1,9 @@
+wb-sway (1.5+wb103) stable; urgency=medium
+
+  * wb-sway-kiosk: restart Firefox after exit
+
+ -- Anton Tarasov <anton.tarasov@wirenboard.com>  Wed, 13 May 2026 10:40:33 +0300
+
 wb-sway (1.5+wb102) stable; urgency=medium
 
   * Correct Jenkinsfile for apt-cache
