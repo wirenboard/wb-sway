@@ -1,0 +1,16 @@
+wb-sway-kiosk for Debian
+------------------------
+
+The wb-sway-kiosk package provides a fullscreen HDMI kiosk session for
+Wiren Board devices. The systemd unit is wb-sway-kiosk.service, and it runs
+Sway on tty1 as root with SWAY_ALLOW_ROOT=1.
+
+Sway starts Squeekboard, the Squeekboard visibility watcher, and Firefox from
+/usr/share/wb-sway/sway/config. Before Sway starts, the service snapshots
+selected /etc/wb-hardware.conf values into /run/wb-sway-kiosk so all helpers
+use the same URL, Firefox mode, volume, and lock directory.
+
+Supported config options are mod4.options.url, mod4.options.ff_mode,
+mod4.options.volume, mod4.options.mouse, mod4.options.mode, and
+mod4.options.rotate. Use systemctl start, stop, or status with
+wb-sway-kiosk.service to control the session.
