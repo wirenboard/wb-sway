@@ -1,0 +1,66 @@
+Source: wb-sway
+Section: x11
+Priority: optional
+Maintainer: Sway and related packages team <team+swaywm@tracker.debian.org>
+Uploaders:
+ Birger Schacht <birger@debian.org>,
+ nicoo <nicoo@debian.org>,
+Build-Depends:
+ debhelper-compat (= 13),
+ libcairo2-dev,
+ libevdev-dev,
+ libgdk-pixbuf-2.0-dev,
+ libinput-dev (>= 1.21.0),
+ libjson-c-dev (>= 0.13),
+ libpango1.0-dev,
+ libpcre2-dev,
+ libpixman-1-dev,
+ libseat-dev,
+ libsystemd-dev (>= 239) | libelogind-dev (>= 239),
+ libwayland-dev (>= 1.21.0),
+ libwlroots-0.18-dev (>= 0.18.0),
+ libxkbcommon-dev (>= 1.5.0),
+ meson (>=0.60),
+ pkgconf,
+ scdoc (>= 1.9.2),
+ tree,
+ wayland-protocols (>= 1.24),
+Standards-Version: 4.7.0
+Homepage: https://swaywm.org
+Vcs-Browser: https://salsa.debian.org/swaywm-team/sway
+Vcs-Git: https://salsa.debian.org/swaywm-team/sway.git
+Rules-Requires-Root: no
+
+Package: wb-sway
+Architecture: any
+Depends:
+ libgl1-mesa-dri,
+ swaybg,
+ polkitd,
+ ${misc:Depends},
+ ${shlibs:Depends},
+Provides: sway
+Conflicts: sway
+Replaces: sway
+Description: i3-compatible Wayland compositor
+ sway (SirCmpwn's Wayland compositor) is a tiling Wayland compositor and a
+ drop-in replacement for the i3 window manager for X11. It works with your
+ existing i3 configuration and supports most of i3's features, plus a few
+ extras. This means it is a minimalist, tiling window manager.
+
+Package: wb-sway-kiosk
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+ alsa-utils,
+ dbus-daemon | dbus,
+ firefox-esr,
+ jq,
+ libglib2.0-bin,
+ squeekboard,
+ wb-sway
+Description: Wiren Board kiosk runtime for sway
+ This package contains the Wiren Board sway kiosk service, Firefox launcher,
+ squeekboard helper scripts and touchscreen keyboard layouts used by the HDMI
+ runtime.
