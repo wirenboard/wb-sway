@@ -1,3 +1,16 @@
+wb-sway (1.10.1-2+wb101) stable; urgency=medium
+
+  * sway: fix startup as root with SWAY_ALLOW_ROOT=1: the opt-in branch of
+    detect_suid() returned "refuse", so wb-sway-kiosk exited immediately
+  * squeekboard-autovis: match the object notation of libwayland 1.23
+    ("zwp_input_method_v2#N"), so the on-screen keyboard appears again
+    with squeekboard 1.43
+  * squeekboard-autovis: do not show the keyboard on deactivate(): the
+    pattern matched "deactivate()" too, so a tap outside an input field
+    opened the keyboard
+
+ -- Ekaterina Volkova <ekaterina.volkova@wirenboard.com>  Thu, 15 Oct 2026 20:25:57 +0300
+
 wb-sway (1.10.1-2+wb100) stable; urgency=medium
 
   * Rename the binary package to wb-sway to avoid clashing with Debian sway.
