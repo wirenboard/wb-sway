@@ -1,3 +1,11 @@
+wb-sway (1.5+wb104) stable; urgency=medium
+
+  * squeekboard-autovis: do not show the keyboard on deactivate(): the
+    pattern matched "deactivate()" too, so a tap outside an input field
+    opened the keyboard
+
+ -- Ekaterina Volkova <ekaterina.volkova@wirenboard.com>  Thu, 15 Oct 2026 20:25:57 +0300
+
 wb-sway (1.5+wb103) stable; urgency=medium
 
   * wb-sway-kiosk: restart Firefox after exit
