@@ -93,7 +93,7 @@ refresh_keycode
 
 tail -n0 -F "$LOG_FILE" | while IFS= read -r line; do
     case "$line" in
-        *"zwp_input_method_v2@"*"activate()"*)
+        *"zwp_input_method_v2@"*".activate()"*)
             show_osk
             refresh_keycode
             ;;
