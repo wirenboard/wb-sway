@@ -93,11 +93,11 @@ refresh_keycode
 
 tail -n0 -F "$LOG_FILE" | while IFS= read -r line; do
     case "$line" in
-        *"zwp_input_method_v2@"*"activate()"*)
+        *"zwp_input_method_v2"[@#]*".activate()"*)
             show_osk
             refresh_keycode
             ;;
-        *"zwp_virtual_keyboard_v1@"*".key("*)
+        *"zwp_virtual_keyboard_v1"[@#]*".key("*)
             key_event=$(printf '%s\n' "$line" | sed -n 's/.*\.key([^,]*, \([0-9][0-9]*\), \([01]\)).*/\1 \2/p')
             [ -n "$key_event" ] || continue
             set -- $key_event
